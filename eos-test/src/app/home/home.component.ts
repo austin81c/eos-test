@@ -15,7 +15,9 @@ export class HomeComponent implements OnInit {
 
   }
 
-  ngOnInit() {
+  ngOnInit() {}
+
+  getBlockInfo() {
     this._blockInfoService.getBlockInfo();
   }
 

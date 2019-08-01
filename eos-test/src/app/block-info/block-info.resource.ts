@@ -1,14 +1,21 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
+import { Api, JsonRpc, RpcError } from 'eosjs';
+import {GetInfoResult} from 'eosjs/dist/eosjs-rpc-interfaces';
 
 @Injectable({
   providedIn: 'root'
 })
 export class BlockInfoResource {
 
-  constructor(private http: HttpClient) { }
+  private api: Api;
 
-  public getBlockInfo() {
-    return this.http.get('https://api.eosnewyork.io/v1/chain/get_info');
+  constructor() {
+    this.api = new Api({ rpc : new JsonRpc('https://api.eosnewyork.io', {fetch}),
+      signatureProvider: null, // Cannot import JsSignatureProvider as it is not exposed properly. Leaving null.
+      textDecoder: new TextDecoder(), textEncoder: new TextEncoder() });
+  }
+
+  public getBlockInfo(): Promise<GetInfoResult> {
+    return this.api.rpc.get_info();
   }
 }
