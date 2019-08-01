@@ -9,11 +9,11 @@ import {BlockInfoResponse} from './BlockInfoResponse';
 })
 export class BlockInfoService {
 
-  constructor(private blockInfoResource: BlockInfoResource) { }
+  constructor(private _blockInfoResource: BlockInfoResource) { }
 
   public getBlockInfo() {
-    this.blockInfoResource.getBlockInfo().subscribe((data: BlockInfoResponse) => {
-
+    this._blockInfoResource.getBlockInfo().subscribe((data: BlockInfoResponse) => {
+      console.log(data);
     });
   }
 }
