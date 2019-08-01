@@ -10,7 +10,7 @@ import {GetBlockResult} from 'eosjs/dist/eosjs-rpc-interfaces';
 })
 export class HomeComponent implements OnInit {
 
-  subscriptions: Subscription[] = [];
+  showSpinner: boolean = false;
   blockListResult: GetBlockResult[] = [];
 
   constructor(private _blockInfoService: BlockInfoService, private _changeDetectorRef: ChangeDetectorRef) {
@@ -22,12 +22,14 @@ export class HomeComponent implements OnInit {
   }
 
   getBlockInfo() {
+    this.showSpinner = true;
     this._blockInfoService.getLastNBlocks(10).then((data: GetBlockResult[]) => {
       this.blockListResult = data;
-      console.log(data);
+      this.showSpinner = false;
       this._changeDetectorRef.detectChanges();
     }, (e: any) => {
       console.log(e);
+      this.showSpinner = false;
     });
   }
 
