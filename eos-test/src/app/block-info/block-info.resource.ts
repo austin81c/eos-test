@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Api, JsonRpc, RpcError } from 'eosjs';
-import {GetInfoResult} from 'eosjs/dist/eosjs-rpc-interfaces';
+import {GetBlockResult, GetInfoResult} from 'eosjs/dist/eosjs-rpc-interfaces';
 
 @Injectable({
   providedIn: 'root'
@@ -17,5 +17,9 @@ export class BlockInfoResource {
 
   public getBlockInfo(): Promise<GetInfoResult> {
     return this.api.rpc.get_info();
+  }
+
+  public getBlock(id: string): Promise<GetBlockResult> {
+    return this.api.rpc.get_block(id);
   }
 }

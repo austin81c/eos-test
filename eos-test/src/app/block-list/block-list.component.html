@@ -1,0 +1,10 @@
+<mat-accordion>
+  <mat-expansion-panel *ngFor="let block of data">
+    <mat-expansion-panel-header>
+      {{block.id}}
+      {{block.timestamp}}
+      {{block.confirmed}}
+    </mat-expansion-panel-header>
+    {{block}}
+  </mat-expansion-panel>
+</mat-accordion>

@@ -8,11 +8,15 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BlockInfoService } from './block-info/block-info.service';
 import { HomeComponent } from './home/home.component';
 import { MaterialModule } from './material/material.module';
+import { BlockListComponent } from './block-list/block-list.component';
+import { BlockListItemComponent } from './block-list-item/block-list-item.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent
+    HomeComponent,
+    BlockListComponent,
+    BlockListItemComponent
   ],
   imports: [
     AppRoutingModule,
