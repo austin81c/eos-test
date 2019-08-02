@@ -39,10 +39,11 @@ export class BlockInfoService {
 
   public async getLastNBlocks(n: number): Promise<GetBlockResult[]> {
     const blockArray: GetBlockResult[] = [];
-    let getBlockId: string = this.getInfoData.head_block_id;
+    const getBlockPromise = await this._blockInfoResource.getBlockInfo();
+    let getBlockId = getBlockPromise.head_block_id;
     for (let i = 0; i < n; i++) {
       const blockPromise = await this._blockInfoResource.getBlock(getBlockId);
-      blockArray.push(blockPromise);
+      blockArray.push(blockPromise);;
       getBlockId = blockPromise.previous;
     }
     return blockArray;

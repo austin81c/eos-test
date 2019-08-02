@@ -1,25 +1,16 @@
 <mat-accordion>
   <mat-expansion-panel *ngFor="let block of data">
     <mat-expansion-panel-header>
-      <mat-panel-title>
-        ID
-      </mat-panel-title>
       <mat-panel-description>
         {{block.id}}
       </mat-panel-description>
-      <mat-panel-title>
-        Timestamp
-      </mat-panel-title>
       <mat-panel-description>
         {{block.timestamp}}
       </mat-panel-description>
-      <mat-panel-title>
-        Actions:
-      </mat-panel-title>
       <mat-panel-description>
         {{block.confirmed}}
       </mat-panel-description>
     </mat-expansion-panel-header>
-    <p>{{block}}</p>
+    <p class="full-block-data">{{printBlockData(block)}}</p>
   </mat-expansion-panel>
 </mat-accordion>

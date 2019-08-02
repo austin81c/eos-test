@@ -15,4 +15,8 @@ export class BlockListComponent implements OnInit {
   ngOnInit() {
   }
 
+  printBlockData(data: any): string {
+    return JSON.stringify(data);
+  }
+
 }
