@@ -26,7 +26,6 @@ describe('AppComponent', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.debugElement.nativeElement;
-    console.log(compiled);
     expect(compiled.querySelector('mat-sidenav-container')).toBeTruthy();
   });
 });
