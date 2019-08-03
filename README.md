@@ -13,8 +13,6 @@ After installing dependencies,
 
 `ng test`
 
-
-
 ## Roadmap
 ### Acceptance Criteria
 1. Page should update with the click of a “LOAD” button. We should only show 10 most recent
@@ -32,3 +30,9 @@ After installing dependencies,
  * Load/Refresh Button
  * Accordion List
  * Accordion Element
+ 
+### Future Improvements
+ * RxJs for state management (e.g. block data store)
+ * Pretty print full block data
+ * Useful error messaging
+ * Refactor blockInfoService to use Observables for repeated calls

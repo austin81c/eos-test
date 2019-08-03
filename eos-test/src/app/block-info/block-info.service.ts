@@ -14,7 +14,7 @@ export class BlockInfoService {
 
   constructor(private _blockInfoResource: BlockInfoResource) { }
 
-  public getBlockInfo(): GetInfoResult {
+  public getBlockInfo(): Promise<GetInfoResult> {
     this._blockInfoResource.getBlockInfo().then((data: GetInfoResult) => {
       this.getInfoData = data;
       console.log(data);
@@ -26,15 +26,8 @@ export class BlockInfoService {
     return null;
   }
 
-  public getBlock(id?: string): GetBlockResult {
-    this._blockInfoResource.getBlock(id || this.getInfoData.head_block_id).then((data: GetBlockResult) => {
-      console.log(data);
-      return data;
-    }, (e: any) => {
-      console.log (e);
-    });
-
-    return null;
+  private getBlock(id?: string): Promise<GetBlockResult> {
+    return this._blockInfoResource.getBlock(id || this.getInfoData.head_block_id);
   }
 
   public async getLastNBlocks(n: number): Promise<GetBlockResult[]> {
@@ -42,8 +35,8 @@ export class BlockInfoService {
     const getBlockPromise = await this._blockInfoResource.getBlockInfo();
     let getBlockId = getBlockPromise.head_block_id;
     for (let i = 0; i < n; i++) {
-      const blockPromise = await this._blockInfoResource.getBlock(getBlockId);
-      blockArray.push(blockPromise);;
+      const blockPromise = await this.getBlock(getBlockId);
+      blockArray.push(blockPromise);
       getBlockId = blockPromise.previous;
     }
     return blockArray;
